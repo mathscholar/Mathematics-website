@@ -1,0 +1,269 @@
+body{
+    background-color:black;
+    margin: 0;     /*讓左右2邊貼緊螢幕*/
+    padding: 0;    /*讓左右2邊貼緊螢幕*/
+}
+.title{
+    font-size: 20px;
+    color: white;
+    background-color: #292929;
+    padding: 1rem; /* 填充 */
+    text-align: center; /* 文字對齊 */
+    display: flex; /* 顯示方式 這裡的目的是讓 數學 和 mathematics 在同一行 */
+    justify-content: center; /* 水平置中對齊 */
+    align-items: center; /* 垂直對齊 */
+    margin-bottom: 5px;
+}
+h2{
+    font-size: 60px;
+    text-align: center;
+    font-family: "Honk", "Noto Sans TC", system-ui;
+    font-weight: bold;
+    border: none 15px black;
+    border-width: fit-content;
+    margin: 2px 2px 2px 1px; /* 上右下左 */
+}
+.origin{
+    font-size: 40px;
+    font-weight:700;
+    display:flex;
+    flex-direction:row;
+    align-items:start; 
+    margin-left:10px;   
+}
+details{
+    position: relative;
+    display: inline-block;
+  }
+details > summary {
+    cursor: pointer;
+    background: #d0e0ff;
+    padding: 0px 10px 3px 10px;
+    border: 1px solid #888;
+    border-radius: 5px;
+    margin-left:10px;
+}
+/* 讓展開內容預設隱藏 */
+details > div {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 110%;   /* 🔹往右偏移，實現「向右展開」 */
+    background: #f8f8f8;
+    border: 1px solid #aaa;
+    padding-bottom: 2px;
+    border-radius: 5px;
+    width: 770px;
+}
+/* 🔹當 details 展開時顯示內容 */
+details[open] > div {
+    display: block;
+}
+/*用svg畫圖*/
+.label{
+    font: bold 14px sans-serif;
+     text-anchor: middle;                 /*text-anchor: middle;         這是 SVG 文字對齊屬性（對水平位置的控制），作用：文字的水平中心對齊圓心*/
+     alignment-baseline: middle;        /*alignment-baseline: middle;  這是 SVG 文字對齊屬性（對text-anchor: middle;垂直位置的控制），作用：文字的垂直中心對齊座標，如果沒有設定，文字會依預設的基線對齊，看起來可能會偏上或偏下*/
+}
+.vertex{
+    fill: #f0f0f0; 
+    stroke: #333; 
+    stroke-width: 2; 
+}
+.hex{ 
+    fill: none; 
+    stroke: #333;
+    stroke-width: 2; 
+}
+.center{ 
+    font: bold 25px sans-serif;
+    text-anchor: middle; 
+    alignment-baseline: middle; 
+}
+#derivative{
+    font-size: 60px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    text-align:center;
+    text-shadow: 0px 0px 50px rgb(0, 162, 255);
+    margin-top:35px;
+}
+#trigonometric{
+    font-size: 60px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    text-align:center;
+    text-shadow: 0px 0px 50px rgb(0, 162, 255);
+    margin-top:35px;
+}
+#important{
+    font-size: 60px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    text-align:center;
+    text-shadow: 0px 0px 50px rgb(0, 162, 255);
+    margin-top:35px;
+}
+#Taylor{
+    font-size: 60px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    text-align:center;
+    text-shadow: 0px 0px 50px rgb(0, 162, 255);
+    margin-top:35px;
+}
+.unitcircle{
+    border:3px solid black;
+    margin-right:879.9px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+#container{
+    display: flex;
+    flex-wrap: wrap;       
+    gap: 4px;   
+    height: 1500px;
+    flex-direction: column;               /*主軸換成垂直(上到下依序排列)*/
+    justify-content: space-between;       /*平均分配空間*/
+    align-items: center;                  /*次軸設置成中間(左到右依序排列)，詳情請看"我啊罵都會"教的css*/
+}
+button{
+    margin-left:15px;
+    margin-right:15px;
+    border-radius: 3px;
+    font-size:15px;
+    border-radius: 15px;
+    background-color: white;
+    color:black;
+    transition-duration: 0.4s;
+}
+button:hover{
+    background-color: black;
+    color: white;
+    transform : scale(1.2);
+    cursor:pointer;
+}
+button:active{
+    color:gray;
+}
+#div1{
+    border:3px solid black;
+    flex: 1;         
+    height: 250px;
+    width:600px;
+    margin-top:10px;
+    background-color: #f9f9f9;
+    border-radius:25px ;
+}
+#div2{
+    border:3px solid black;
+    flex: 1;        
+    height: 450px;
+    width:1000px;
+    margin: 10px 0px 10px 0px;    /*上右下左*/
+    background-color: #f5f5f5;
+    border-radius:25px ;
+}
+#div3{
+    border:3px solid black;
+    flex: 1;         
+    height: 200px;
+    width:1000px;
+    background-color: #f5f5f5;
+    border-radius:25px ;
+}
+#div4{
+    border:3px solid black;
+    flex: 0.80;          
+    height:150px;
+    width:1000px; 
+    margin: 10px 0px 10px 0px;    /*上右下左*/
+    background-color: #f5f5f5;
+    border-radius:25px ;
+}
+#div5{
+    border: 3px solid black;
+    margin-left: 5px;
+    margin-right: 1290px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    background-color: #9AFF02;	
+    /*position:relative;          /*在原來的位置做相對位移*/
+    /*bottom:1272px;               /*在原來的位置上，往下推1000px，也就是往上1000px*/
+    /*border-collapse: collapse;  */
+}
+
+#table1{
+    border: 3px none black;
+    width: 520px;
+    margin:0 auto;   /*水平左右置中，但是這招不能用在垂直置中*/
+    margin-top:15px;
+    /*border-collapse: collapse; /* 讓表格格線 合併成一條，看起來整齊;彈性調整key-1*/
+    text-align: center;
+    border-spacing: 12px; /* 讓格子之間有距離 */
+}
+#table2{
+    border: 3px none rgb(0, 0, 0);
+    width: 910px;
+    margin:0 auto;    /*水平左右置中，但是這招不能用在垂直置中*/
+    /*border-collapse: collapse; /* 讓表格格線 合併成一條，看起來整齊;彈性調整key-1*/
+    text-align: center;
+    border-spacing: 18px; /* 讓格子之間有距離 */
+}
+#table3{
+    border: 3px none rgb(0, 0, 0);
+    width: 740px;
+    margin:0 auto;    /*水平左右置中，但是這招不能用在垂直置中*/
+    /*border-collapse: collapse; /* 讓表格格線 合併成一條，看起來整齊;彈性調整key-1*/
+    text-align: center;
+    border-spacing: 18px; /* 讓格子之間有距離 */
+}
+#table4{
+    border: 3px none rgb(0, 0, 0);
+    width: 830px;
+    margin:0 auto;    /*水平左右置中，但是這招不能用在垂直置中*/
+    /*border-collapse: collapse; /* 讓表格格線 合併成一條，看起來整齊;彈性調整key-1*/
+    border-spacing: 12px; /* 讓格子之間有距離 */
+}
+tr{
+    border: 3px solid rgb(0, 0, 0);
+    width: 100px;
+}
+td{
+    font-size: 20px;
+    border: 3px solid rgb(0, 0, 0);
+    padding:6px; 
+    word-wrap: break-word;    /*文字超長自動換行;彈性調整key-2*/                
+    transition: transform 0.4s;   /*transition-duration:0.4s ;*/ 
+}
+td:hover{
+    transform:scale(1.1);
+}
+a{
+    font-size: 25px;
+    margin-left:13px;
+}
+a:hover{
+    color: rgb(0, 106, 255);
+    cursor:pointer;
+}
+a:active{
+    color: rgb(21, 21, 228);
+}
+iframe{
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+    width:48%; 
+    height:500px;
+    margin-right:10px;
+    margin-left:10px;
+}
+
+
+/*
+1.font-weight控制字體粗細
+2.font-style控制字體傾斜
+3.彈性調整:螢幕放大縮小時會自動調整，格式不會跑掉
+4.font-family:system-ui; 用在英文字上好看
+

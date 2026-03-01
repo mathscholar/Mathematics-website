@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微積分</title>
+    <link rel="stylesheet" href="code.css">   <!--從外部引入css檔案檔案--> 
+    <script src="code.js" defer></script>     <!--從外部引入script檔案檔案,defer是延遲執行，等到html解析完後再執行-->  
+    <!-- 連接到Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Bungee&family=Honk&family=Kalnia+Glaze:wght@100..700&display=swap" rel="stylesheet">
+    <link rel="icon" href="calculus.png" type="image/x-icon">     <!--本行是用來改網站圖標得-->
+    <!--圖標得a連結標籤:<a href="https://www.flaticon.com/free-icons/calculus" title="calculus icons">Calculus icons created by ICs Icons - Flaticon</a>-->
+</head>
+<body>
+    <div class="title">
+        <h1>三角函數介紹</h1>
+        <h2>Trigonometric functions introduce</h2>
+    </div>
+
+    <div>
+        <div class="origin">
+            1. Q : 三角函數的由來?  <details><summary>解答</summary><div> &nbsp; A : 與「人類如何測量角度與距離」有關。</div></details>
+        </div>
+        <div style="height:7px;"></div>
+        <div class="origin">
+            2. Q : 為什麼要用三角函數?<details><summary>解答</summary><div> &nbsp; A : 三角函數能描述週期變化與角度關係。</div></details> 
+        </div>
+    </div>
+
+    <br>
+    <!--<img src="sin_cos.png" alt="連線失敗" style="border:3px solid black; margin-left:1px; width:550px;">   <!-alt 是給「看不到圖片時」使用的替代說明文字。-->
+
+  <!--由直角三角形看出邊長比值的定義-->
+  <svg width="490" height="620" viewBox="0 60 900 270" style="border:3px solid black; background:#fff; margin-left:10px;">
+    <polygon points="
+                    45,500 
+                    270,500 
+                    270,85" fill="#f0f0f0" stroke="black"></polygon>
+    <!--標題-->
+    <text x="60" y="-235" style="font:bold 85px sans-serif;" >6個三角函數的定義 : </text>
+    <text x="80" y="-130" style="font:bold 45px sans-serif;" >(可簡單理解成在直角三角形三邊長中</text>
+    <text x="100" y="-70" style="font:bold 43px sans-serif;" >取2相異邊長做比值，一共有6種結果)</text>
+    <!---分隔線-->
+    <polygon points="0,0 900,0" stroke="black" stroke-width="3"></polygon>
+    <!--標3邊長a,b,c-->
+    <text x="110" y="320" style="font:bold 45px sans-serif;">c</text>
+    <text x="150" y="540" style="font:bold 45px sans-serif;">a</text>
+    <text x="279" y="340" style="font:bold 45px sans-serif;">b</text>
+    <text x="65" y="495" style="font:bold 45px sans-serif;">θ</text>
+    <!--比值的定義-->
+    <text x="355" y="110" style="font:bold 40px sans-serif;">正弦sinθ = b/c = 對邊 / 斜邊</text>
+    <text x="355" y="190" style="font:bold 40px sans-serif;">餘弦cosθ = a/c = 鄰邊 / 斜邊</text>
+    <text x="355" y="270" style="font:bold 40px sans-serif;">正切tanθ = b/a = 對邊 / 鄰邊</text>
+    <text x="355" y="350" style="font:bold 40px sans-serif;">餘切cotθ = a/b = 鄰邊 / 對邊</text>
+    <text x="355" y="430" style="font:bold 40px sans-serif;">正割cscθ = c/b = 斜邊 / 對邊</text>
+    <text x="355" y="510" style="font:bold 40px sans-serif;">餘割secθ = c/a = 斜邊 / 鄰邊</text>
+    <text x="80" y="620" style="font:bold 42px sans-serif;" >其中a,b,c分別為θ角的鄰邊、對邊、斜邊</text>
+    <text x="15" y="700" style="font:bold 40px sans-serif;" >三角函數是2長度的比值，因此其值介在0與1之間</text>
+  </svg>
+
+    <svg width="950" height="620" viewBox="0 0 900 620"
+     style="border:3px solid black; background-color:#fbfbff; margin-left:10px;">
+  <!-- 定義箭頭樣式 -->
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="black"/>
+    </marker>
+  </defs>
+
+  <!-- 座標軸 -->
+  <line x1="-30" y1="400" x2="860" y2="400" stroke="black" stroke-width="3"
+        marker-end="url(#arrow)"/>
+  <text x="865" y="410" font-size="44">x</text>
+
+  <line x1="230" y1="620" x2="230" y2="20" stroke="black" stroke-width="3"
+        marker-end="url(#arrow)"/>
+  <text x="250" y="45" font-size="40">y</text>
+
+  <!-- 單位圓 -->
+  <circle cx="230" cy="400" r="200" fill="none" stroke="black" stroke-width="3"/>
+  <circle cx="230" cy="400" r="5" fill="black"/>        <!--圓心-->
+  <text x="210" y="420" font-size="18">O</text>
+
+  <!-- θ = 60° -->
+  <!-- cos60 = 0.5, sin60 = 0.866, tan60 = 1.732, cot60 = 0.577 -->
+  <!-- sec60 = 2, csc60 = 1.155 -->
+
+  <!-- sinθ (紅) -->
+  <line x1="330" y1="400" x2="330" y2="226.8"
+        stroke="red" stroke-width="4"/>
+  <text x="340" y="315" fill="red" font-size="18">sinθ</text>
+
+  <!-- cosθ (藍) -->
+  <line x1="230" y1="400" x2="330" y2="400"
+        stroke="blue" stroke-width="4"/>
+  <text x="260" y="420" fill="blue" font-size="18">cosθ</text>
+
+  <!-- tanθ (綠, 延伸到 x=1 的垂直線段) -->
+  <!-- tanθ = 1.732, 在 x = 300 + 200 = 500 -->
+  <line x1="430" y1="400" x2="430" y2="53.4"
+        stroke="green" stroke-width="4"/>
+  <text x="440" y="280" fill="green" font-size="18">tanθ</text>
+
+  <!-- secθ (橙, O到(1,tanθ)) -->
+  <!-- secθ=2, 所以距離是2倍半徑，取(500,400-346.4) -->
+  <line x1="230" y1="400" x2="430" y2="53.6"
+        stroke="orange" stroke-width="4"/>
+  <text x="335" y="140" fill="orange" font-size="18">secθ</text>
+
+  <!-- cotθ (紫, 延伸到 y=1 的水平段) -->
+  <!-- cotθ = 0.577, 在 y=400-200 = 200 -->
+  <!-- x = 300 + 200*0.577 = 415.4 -->
+  <line x1="230" y1="200" x2="345.4" y2="200"
+        stroke="#7e22ce" stroke-width="4"/>
+  <text x="275" y="190" fill="#7e22ce" font-size="18">cotθ</text>
+
+  <!-- cscθ (粉紫, O到(cotθ,1)) -->
+  <!-- cscθ=1.155, 終點(415.4,200) -->
+  <line x1="230" y1="400" x2="345.4" y2="200"
+        stroke="#d946ef" stroke-width="4"/>
+  <text x="250" y="290" fill="#d946ef" font-size="18">cscθ</text>
+
+  <!-- 算出實際端點 -->
+  <!-- P = (400, 226.8) -->
+  <circle cx="330" cy="226.8" r="6" fill="black"/>
+  <text x="340" y="230" font-size="18" style="font:bold 25px sans-serif;">P(cosθ,sinθ)</text>
+  <circle cx="430" cy="57.4" r="6" fill="black"/>
+  <text x="400" y="45.4" font-size="18">T(1,tanθ)</text>
+  <circle cx="345.4" cy="200" r="6" fill="black"/>
+  <text x="337.4" y="190" font-size="18">C(cotθ,1)</text>
+  <circle cx="230" cy="200" r="6" fill="black"/>
+  <text x="178" y="190" font-size="18">R(0,1)</text>
+  <circle cx="330" cy="400" r="6" fill="black"/>
+  <text x="325" y="425" font-size="18">S(cosθ,0)</text>
+  <circle cx="430" cy="400" r="6" fill="black"/>
+  <text x="435" y="390" font-size="18">Q(1,0)</text>
+
+  <circle cx="230" cy="400" r="6" fill="black"/>        <!--再標一次圓心，不然會被擋住-->
+
+  <!-- 標示角度 θ -->
+  <!--<path d="M300 400 A50 50 0 0 1 350 357"
+        fill="none" stroke="black" stroke-width="2"/>-->
+  <text x="250" y="390" font-size="18">θ=60°</text>
+
+  <!-- 標題說明 -->
+  <text x="530" y="100" style="font:bold 30px sans-serif;">單位圓內的 6 個三角函數</text>
+  <text x="545" y="130" style="font:bold 23px sans-serif;">(單位圓就是指半徑為 1 的圓)</text>
+  <text x="515" y="175" style="font:22px sans-serif;">• sinθ：P 在 y 軸投影的長度(紅)</text>
+  <text x="515" y="207" style="font:22px sans-serif;">• cosθ：P 在 x 軸投影的長度(藍)</text>
+  <text x="515" y="239" style="font:22px sans-serif;">• tanθ：Q 到 T 的長度(綠)</text>
+  <text x="515" y="271" style="font:22px sans-serif;">• secθ：O 到 T 的長度(橙)!!!</text>
+  <text x="515" y="303" style="font:22px sans-serif;">• cotθ：R 到 C 的長度(紫)</text>
+  <text x="515" y="335" style="font:22px sans-serif;">• cscθ：O 到 C 的長度(粉紫)</text>
+  <!--標題分隔線-->
+  <line x1="500" y1="50" x2="500" y2="355" stroke="black" stroke-width="4"></line>
+  <line x1="885" y1="50" x2="885" y2="355" stroke="black" stroke-width="4"></line>  <!--885變855-->
+  <line x1="500" y1="50" x2="885" y2="50" stroke="black" stroke-width="4"></line>
+  <line x1="500" y1="355" x2="885" y2="355" stroke="black" stroke-width="4"></line>
+</svg>
+  
+    <!--動態繪製單位圓-->
+    <div class="unitcircle">
+      <h3 id="unitcircle_word" style="text-align: center; font:bold 30px sans-serif; border:2px solid black;">單位圓內的正弦sin與餘弦cos</h3>
+      <label style="font-weight:bold; margin-left:10px; font-size:30px;">θ = <span id="v">30</span>° ( 0° ≤ θ ≤ 360°)</label>  <br>
+      <input id="slide" type="range" min="0" max="360" value="30" step="1" style="margin-left:10px;"></input>
+      <br><br>
+  
+    <!-- 固定 viewBox（不要在 draw() 裡改動） -->
+    <svg id="svg" width="620" height="540" viewBox="0.2 -0.1 0.001 2.5"
+         style="border:3px solid #ddd; background:#fff; display:block;">
+      <!-- 標示固定點 A（小圓與文字）-->
+      <circle id="Apt" cx="0.1" cy="1.2" r="1" fill="none" stroke="black" stroke-width="0.01"/>   
+                                                       <!--stroke → 邊框顏色，不可用border-color代替，stroke-width → 線寬-->
+      <text x="0.04" y="1.15" font-size="0.15">A (θ)</text>
+  
+      <!-- 邊，三個 <line>：分別為鄰邊 (adj)、對邊 (opp)、斜邊 (hyp)。它們沒有 x1,y1,x2,y2，會由 JS 在 draw() 裡設定座標。-->
+      <line id="adj" stroke="blue" stroke-width="0.02"/>
+      <line id="opp" stroke="red"  stroke-width="0.02"/>
+      <line id="hyp" stroke="black" stroke-width="0.02"/>
+  
+      <!-- 直角小方塊 (polygon)，用多邊形畫直角的小方塊（因為方塊方向需隨角度旋轉），頂點會由 JS 計算並放入 points 屬性。-->
+      <polygon id="corner" fill="gray"/>
+  
+      <!-- 標籤與數值 -->
+      <text id="sinlab" font-size="0.09">sinθ</text>
+      <text id="coslab" font-size="0.09">cosθ</text>
+      <text id="sinvalue" font-size="0.09">0</text>
+      <text id="cosvalue" font-size="0.09">0</text>
+    </svg></div>
+  
+  <script>
+  // DOM
+  var slide = document.getElementById('slide');
+  var v = document.getElementById('v');       //v是value的簡寫
+  var adj = document.getElementById('adj');
+  var opp = document.getElementById('opp');
+  var hyp = document.getElementById('hyp');
+  var sinlab = document.getElementById('sinlab');
+  var coslab = document.getElementById('coslab');
+  var sinvalue = document.getElementById('sinvalue');
+  var cosvalue = document.getElementById('cosvalue');
+  var corner = document.getElementById('corner');
+  
+  // 工具
+  function normalize(p){ const L = Math.hypot(p.x,p.y)||1; return {x:p.x/L,y:p.y/L}; }  
+  //作用：把一個向量 p = {x, y} 變成長度為 1的向量，只保留方向 ; 如果向量長度為 0，用 ||1 防止除以 0。
+  function add(a,b){ return {x:a.x+b.x,y:a.y+b.y}; }   //向量加法
+  function scale(v,s){ return {x:v.x*s,y:v.y*s}; }     //向量係數積，也就是縮放
+  function toStr(p){ return p.x + ',' + p.y; }
+  //作用：SVG polygon 的 points 屬性需要 "x1,y1 x2,y2 x3,y3 …" 格式，toStr 把 {x:0.1, y:0.2} 變成 "0.1,0.2"
+  
+  // A 固定位置（絕對在 viewBox 座標系）
+  var A = {x:0.1, y:1.2};   //固定點的座標（你希望 A 在畫面上完全不動）。這是絕對座標（相對於 viewBox）。
+  var h = 1.0;
+  
+  function draw(theta_deg){         //主函數，給定角度（度），更新整個 SVG。
+    const θ = Number(theta_deg);    //把輸入值強制轉成數字（若滑桿傳回字串，這會轉換）。
+    const rad = θ * Math.PI / 180;
+  
+    // 計算 adj, opp（可以為負）                               C
+    const adj_len = Math.cos(rad) * h;
+    const opp_len = Math.sin(rad) * h;
+  
+    // B（直角）在 A.x + adj_len, A.y                    A     B
+    const B = {x: A.x + adj_len, y: A.y};
+    // C 在 B.x, A.y - opp_len (SVG y 向下為正)                
+    const C = {x: B.x, y: A.y - opp_len};
+  
+    // 更新三邊（注意順序與端點）  setAttribute 是更新 SVG 元素屬性的方法。
+    adj.setAttribute('x1', A.x); adj.setAttribute('y1', A.y);
+    adj.setAttribute('x2', B.x); adj.setAttribute('y2', B.y);
+  
+    opp.setAttribute('x1', B.x); opp.setAttribute('y1', B.y);
+    opp.setAttribute('x2', C.x); opp.setAttribute('y2', C.y);
+  
+    hyp.setAttribute('x1', A.x); hyp.setAttribute('y1', A.y);
+    hyp.setAttribute('x2', C.x); hyp.setAttribute('y2', C.y);
+  
+    // 標籤位置 (固定的相對位置，不會讓 A 移動)
+    sinlab.setAttribute('x', (B.x + C.x)/2 + 0.03);
+    sinlab.setAttribute('y', (B.y + C.y)/2 + 0.02);
+  
+    coslab.setAttribute('x', (A.x + B.x)/2 - 0.05);
+    coslab.setAttribute('y', A.y + 0.06);
+  
+    // 顯示數值（小數三位）
+    sinvalue.textContent = (opp_len).toFixed(3);
+    cosvalue.textContent = (adj_len).toFixed(3);
+  
+    sinvalue.setAttribute('x', C.x + 0.03);
+    sinvalue.setAttribute('y', C.y + 0.02);
+  
+    cosvalue.setAttribute('x', B.x + 0.02);
+    cosvalue.setAttribute('y', B.y - 0.02);
+  
+    // 直角小方塊：基於向量 BA 與 BC 建立 polygon（以 B 為頂點）
+    const dirBA = normalize({x: A.x - B.x, y: A.y - B.y}); // 從 B 指向 A ， 單位向量，方向從 B 指向 A（沿鄰邊方向）。
+    const dirBC = normalize({x: C.x - B.x, y: C.y - B.y}); // 從 B 指向 C ， 單位向量，方向從 B 指向 C（沿對邊方向）。
+                                                           //兩個方向決定直角方塊的兩個邊方向（方塊面向鄰邊與對邊的方向）。
+  
+    // 方塊大小 s：依據 |adj|, |opp| 做上下界，避免過大或過小
+    const sBase = 0.08;
+    const s = sBase;
+  
+    const p0 = B; // 頂點 B
+    const p1 = add(B, scale(dirBA, s));
+    const p2 = add(p1, scale(dirBC, s));
+    const p3 = add(B, scale(dirBC, s));
+  
+    corner.setAttribute('points', [toStr(p0), toStr(p1), toStr(p2), toStr(p3)].join(' '));
+  }
+  
+  // 綁定滑桿
+  slide.addEventListener('input', (e)=>{
+    const θ = e.target.value;    //取滑桿的當前值（字串）。
+    v.textContent = θ;           //更新上方的 <span id="v"> 讓頁面顯示當前角度數值
+    draw(θ);                     //呼叫 draw() 更新整個 SVG。
+  });  
+  
+  // 初始畫面（A 固定）
+  draw(slide.value);
+  </script>
+
+
+   <!--用svg畫圖-->
+   <!--y軸設定會反過來，要小心-->
+  <svg width="1000" height="500" viewBox="0 0 900 400" style="border:3px solid black; background:#fff;">
+    <!-- 六邊形（平上平下）               連線的部分由polygon自動完成 -->      
+    <polygon class="hex" points="
+        75,140
+        170,140
+        225,210
+        175,280
+        75,280
+        25,210
+        "/>
+
+    <!-- 六個頂點圓框與文字 -->
+    <circle class="vertex" cx="75" cy="140" r="25"/>
+    <text x="75" y="140" class="label">sin</text>
+
+    <circle class="vertex" cx="175" cy="140" r="25"/>
+    <text x="175" y="140" class="label">cos</text>
+
+    <circle class="vertex" cx="215" cy="210" r="25"/>
+    <text x="215" y="210" class="label">cot</text>
+
+    <circle class="vertex" cx="175" cy="280" r="25"/>
+    <text x="175" y="280" class="label">csc</text>
+
+    <circle class="vertex" cx="75" cy="280" r="25"/>
+    <text x="75" y="280" class="label">sec</text>
+
+    <circle class="vertex" cx="35" cy="210" r="25"/>
+    <text x="35" y="210" class="label">tan</text>
+
+    <!-- 中間數字 -->
+    <circle class="vertex" cx="125" cy="210" r="25"/>
+    <text x="125" y="210" class="center">1</text>
+    <!--標題(其實也是設定座標來調位置)-->
+    <text x="150" y="60" style="font:bold 28px sans-serif; text-anchor: middle; alignment-baseline: middle; ">超級六邊形</text>
+    <text x="150" y="100" style="font:bold 28px sans-serif; text-anchor: middle; alignment-baseline: middle; ">(4種關係圖)</text>
+    <!--內容-->
+    <text x="480" y="40" class="center" >1.平方關係 : 左² + 右² = 下²</text>
+    <text x="625" y="60" style="font-size:85px;">&#123;</text>                         <!--&#123;是{的意思-->
+    <text x="770" y="10" class="center" >sin²θ + cos²θ = 1²</text>
+    <text x="770" y="40" class="center" >tan²θ + 1² = sec²θ</text>
+    <text x="770" y="70" class="center" >1² + cot²θ = csc²θ</text>
+    <text x="610" y="110" class="center" >2.餘角關係 : 左(θ) = 右(90°- θ) 或 右(θ) = 左(90°-θ)</text>
+    <text x="325" y="205" style="font-size:85px;">&#123;</text>                         <!--&#123;是{的意思-->
+    <text x="613" y="150" class="center" >(1.) sinθ = cos(90°- θ) 或 cosθ = sin(90°- θ)</text>
+    <text x="610" y="185" class="center" >(2.) tanθ = cot(90°- θ) 或 cotθ = tan(90°- θ)</text>
+    <text x="620" y="220" class="center" >(3.) secθ = csc(90°- θ) 或 cscθ = sec(90°- θ)</text>
+    <text x="620" y="260" class="center" >3.商數關係 : n/(n+1) = (n-1) ， 其中n是某個三角函數，而</text>
+  </svg>
+
+    <div id="container">
+    <div id="div1">
+        <div id="derivative">函數微分公式</div>     <!--如果這裡不用div而是span的話，text-align:center就用不了-->
+    <table id="table1">
+        <tr>
+            <td>乘法 : [f(x)g(x)]'=f '(x)g(x) + f(x)g'(x)<button onclick="handle_click('multiply')">證明</button></td>
+        </tr>
+        <tr>
+            <td>除法 : [f(x)/g(x)]'=[f '(x)g(x) - f(x)g'(x)]/g(x)²<button onclick="handle_click('division')">證明</button></td>
+        </tr>
+        <tr>
+            <td>連鎖律 : [f(g(x))]'=f '(g(x))g'(x)<button onclick="handle_click('chain_rule')">證明</button></td>
+        </tr>
+        <tr>
+          <td>微分定義式 : </td>
+        </tr>
+    </table>
+</div>
+
+<div id="div2">
+    <div id="trigonometric">三角函數微分公式</div>
+    <table id="table2">
+        <tr>
+            <td>sin(x)' = cos(x)  <button onclick="handle_click('sin')">證明</button></td>  
+            <td>tan(x)' = sec²(x) <button onclick="handle_click('tan')">證明</button></td> 
+            <td>sec(x)' = sec(x)tan(x) <button onclick="handle_click('sec')">證明</button></td> 
+        </tr>
+        <tr>
+            <td>cos(x)' = -sin(x) <button onclick="handle_click('cos')">證明</button></td> 
+            <td>cot(x)' = -csc²(x) <button onclick="handle_click('cot')">證明</button></td> 
+            <td>csc(x)' = -csc(x)cot(x) <button onclick="handle_click('csc')">證明</button></td> 
+        </tr>
+        <tr>
+            <td>[sin⁻¹(x)]' = 1/√1-x² <button onclick="handle_click('arcsin')">證明</button></td> 
+            <td>[tan⁻¹(x)]' = 1/1+x² <button onclick="handle_click('arctan')">證明</button></td> 
+            <td>[sec⁻¹(x)]' = 1/x√x²-1 <button onclick="handle_click('arcsec')">證明</button></td> 
+        </tr>
+    </table>
+</div>
+
+<div id="div3">
+    <div id="important">極限公式</div>
+    <table id="table3">
+        <tr>
+            <td>lim(x->0) sin(x) / x = 1<button onclick="handle_click('sin_limit')">證明</button></td>
+            <td>lim(x->0) tan(x) / x = 1<button onclick="handle_click('tan_limit')">證明</button></td>
+        </tr>
+        <tr>
+            <td>lim(x->0) e^(x)-1 / x = 1<button onclick="handle_click('e_limit')">證明</button></td>
+            <td>lim(x->0) (1-cos(x))/x² = 1/2<button onclick="handle_click('cos_limit')">證明</button></td>
+        </tr>
+        <tr>
+            <td>lim(x->0) sin⁻¹(x) / x = 1<button onclick="handle_click('arcsin_limit')">證明</button></td>
+            <td>lim(x->0) tan⁻¹(x) / x = 1<button onclick="handle_click('arctan_limit')">證明</button></td>
+        </tr>
+    </table>
+</div>
+
+<div id="div4">
+    <div id="Taylor">泰勒展開式</div>
+    <table id="table4">
+        <tr>
+            <td>1. f(x) = f(a) + f '(a)(x-a)/1! + f ''(a)(x-a)²/2! + f '''(a)(x-a)³/3! + ... + f ⁽ⁿ⁾(a)(x-a)ⁿ/n!
+            <br>2. 在x=a處的展開，第n項的係數 = f ⁽ⁿ⁾(a)/n! => f ⁽ⁿ⁾(a)×(x-a)ⁿ
+            <br>3. 收斂半徑R : 利用an+1/an判斷，若|an+1/an|<1則收斂，|an+1/an|>1則發散
+            <button onclick="handle_click('Taylor_expansion')">證明</button></td>
+        </tr>
+    </table>
+</div>
+</div>
+
+<div id="div5">
+<h3 style="border: 3px solid black; margin: 5px 5px 5px 5px; padding-left: 6.5px; font-size: 30px;">跳轉頁面表</h3>
+<a href="#ax² + bx + c">跳到二次函數</a>
+<br>
+<a href="#e^x">跳到指數函數</a>
+<br>
+<a href="#sin">跳到正弦函數</a>
+<br>
+<a href="#cos">跳到餘弦函數</a>
+<br>
+<a href="#regression">跳到回歸直線</a>
+</div>
+
+<!-- <img src="ax^2 + bx + c.png" alt="連線失敗">  這行程式碼是靜態圖，暫時用不到-->
+
+<dfn id="ax² + bx + c" style="font-size: 40px; font-style: normal;">二次函數</dfn>
+<br>
+<iframe src="ax² + bx + c.html"></iframe>
+<br>
+<dfn id="e^x" style="font-size: 40px; font-style: normal;">指數函數</dfn>
+<br>
+<iframe src="e^x.html"></iframe>
+<br>
+<dfn id="sin" style="font-size: 40px; font-style: normal;">正弦函數</dfn>
+<br>
+<iframe src="sin(x).html"></iframe>
+<br>
+<dfn id="cos" style="font-size: 40px; font-style: normal;">餘弦函數</dfn>
+<br>
+<iframe src="cos(x).html"></iframe>
+<br>
+<dfn id="regression" style="font-size: 40px; font-style: normal;">回歸直線</dfn>
+<br>
+<iframe src="auto_regression.html"></iframe>
+<br>
+<a href="code-2.html" target="_blank">練題型</a>
+</body>
+</html>
+
+
+
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>fetch 測試</title>
+</head>
+<body>
+  <h3>Fetch 測試（開發用）</h3>
+  <pre id="out">載入中…</pre>
+
+  <script>
+    fetch("data.json")
+      .then(res => {
+        console.log("response:", res);
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        return res.json();
+      })
+      .then(data => {
+        console.log("json:", data);
+        document.getElementById("out").textContent = JSON.stringify(data, null, 2);
+      })
+      .catch(err => {
+        console.error("fetch 錯誤:", err);
+        document.getElementById("out").textContent = "錯誤: " + err;
+      });
+  </script>
+</body>
+</html>
+
+
+
+<style>
+  body { font-family: system-ui, "Noto Sans", Arial; margin:18px; background:#fbfbff; color:#0b1220; }
+  h1 { font-size:20px; margin-bottom:6px; }
+  .wrap { display:flex; gap:18px; flex-wrap:wrap; align-items:flex-start; }
+  .panel { background:#fff; border-radius:10px; padding:12px; box-shadow:0 6px 18px rgba(12,20,40,0.06); }
+  #svg-wrap { width:720px; max-width:100%; }
+  .controls { width:260px; }
+  .value { font-family: monospace; font-size:13px; }
+  label { font-size:13px; display:block; margin-bottom:6px; }
+  .muted { color:#546074; font-size:13px; }
+  .legend { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+  .swatch { display:inline-flex; align-items:center; gap:6px; padding:6px 8px; border-radius:6px; background:#f7f9fc; }
+  .dot { width:12px; height:12px; border-radius:6px; display:inline-block; }
+  small { color:#566; display:block; margin-top:6px; }
+</style>
+</head>
+<body>
+  <h1>單位圓 — 幾何看懂六個三角函數</h1>
+  <div class="wrap">
+    <div id="svg-wrap" class="panel">
+      <!-- SVG（responsive） -->
+      <svg id="unit-svg" viewBox="-260 -260 520 520" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title">
+        <title id="title">單位圓與六個三角函數示意圖</title>
+
+        <!-- 背景網格（輕） -->
+        <g stroke="#eef2f6" stroke-width="0.6">
+          <line x1="-250" y1="0" x2="250" y2="0" />
+          <line x1="0" y1="-250" x2="0" y2="250" />
+        </g>
+
+        <!-- 單位圓（r=100） -->
+        <g transform="scale(100)">
+          <!-- note: 繪圖單位＝1 -> SVG 100px -->
+          <circle cx="0" cy="0" r="1" fill="#ffffff" stroke="#2b6cb0" stroke-width="0.02"/>
+        </g>
+
+        <!-- 坐標軸（加粗） -->
+        <g stroke="#2d3748" stroke-width="2">
+          <line x1="-240" y1="0" x2="240" y2="0" />
+          <line x1="0" y1="-240" x2="0" y2="240" />
+        </g>
+
+        <!-- 動態元素 group -->
+        <g id="dyn" transform="scale(100) translate(0,0)">
+          <!-- 半徑（從原點到 P） -->
+          <line id="radius" x1="0" y1="0" x2="0.8660254" y2="-0.5" stroke="#111827" stroke-width="0.02" stroke-linecap="round"/>
+
+          <!-- 點 P (cos, sin) -->
+          <circle id="P" cx="0.8660254" cy="-0.5" r="0.03" fill="#111827" stroke="#fff" stroke-width="0.006"/>
+          <text id="P_label" x="0.92" y="-0.52" font-size="0.06" fill="#111827">P(cos, sin)</text>
+
+          <!-- 投影到 x 軸（cos） -->
+          <line id="proj_x" x1="0.8660254" y1="-0.5" x2="0.8660254" y2="0" stroke="#e53e3e" stroke-width="0.01" stroke-dasharray="0.02 0.02"/>
+          <line x1="0" y1="0" x2="0.8660254" y2="0" stroke="#e53e3e" stroke-width="0.01"/>
+          <text id="cos_label" x="0.43" y="0.04" font-size="0.06" fill="#e53e3e">cosθ</text>
+
+          <!-- 投影到 y 軸（sin） -->
+          <line id="proj_y" x1="0" y1="0" x2="0" y2="-0.5" stroke="#2f855a" stroke-width="0.01" stroke-dasharray="0.02 0.02"/>
+          <line x1="0.8660254" y1="-0.5" x2="0" y2="-0.5" stroke="#2f855a" stroke-width="0.01"/>
+          <text id="sin_label" x="-0.12" y="-0.25" font-size="0.06" fill="#2f855a">sinθ</text>
+
+          <!-- line from origin along angle extended to intersect x=1 (for tangent/sec) -->
+          <line id="angle_line" x1="0" y1="0" x2="1.5" y2="-0.8660254*1.732" stroke="#8b5cf6" stroke-width="0.004" stroke-linecap="round" opacity="0.9"/>
+
+          <!-- intersection with vertical x=1 -->
+          <circle id="T" cx="1" cy="-0.5773503" r="0.03" fill="#8b5cf6" stroke="#fff" stroke-width="0.006" />
+          <line id="t_segment" x1="1" y1="0" x2="1" y2="-0.5773503" stroke="#8b5cf6" stroke-width="0.01"/>
+          <text id="tan_label" x="1.02" y="-0.3" font-size="0.06" fill="#8b5cf6">tanθ</text>
+
+          <!-- secant (origin to (1,tan)) -->
+          <line id="sec_line" x1="0" y1="0" x2="1" y2="-0.5773503" stroke="#ff9900" stroke-width="0.008" stroke-linecap="round"/>
+          <text id="sec_label" x="0.45" y="-0.45" font-size="0.055" fill="#ff9900">|secθ|</text>
+
+          <!-- intersection with horizontal y=1 (for cot/csc) -->
+          <circle id="C" cx="1.7320508" cy="-1" r="0.03" fill="#0ea5a4" stroke="#fff" stroke-width="0.006" />
+          <line id="cot_segment" x1="0" y1="-1" x2="1.7320508" y2="-1" stroke="#0ea5a4" stroke-width="0.01"/>
+          <text id="cot_label" x="0.8" y="-1.02" font-size="0.06" fill="#0ea5a4">cotθ</text>
+
+          <!-- csc line (origin to (cot,1)) -->
+          <line id="csc_line" x1="0" y1="0" x2="1.7320508" y2="-1" stroke="#d926a9" stroke-width="0.008" stroke-linecap="round"/>
+          <text id="csc_label" x="0.9" y="-0.6" font-size="0.055" fill="#d926a9">|cscθ|</text>
+
+        </g>
+
+        <!-- static labels for axes -->
+        <text x="240" y="-6" font-size="12" fill="#222" text-anchor="end">+x</text>
+        <text x="-6" y="-240" font-size="12" fill="#222" text-anchor="end">+y</text>
+
+      </svg>
+      <small class="muted">提示：拖動右側滑桿或輸入角度（度）來改變 θ。圖中 radius = 1（單位圓），所有幾何段長都依單位圓定義。</small>
+    </div>
+
+    <div class="controls panel">
+      <label>角度 θ（度）：
+        <input id="angle" type="range" min="0" max="360" value="330" step="1" style="width:100%"/>
+      </label>
+      <div style="margin-top:8px;">
+        <input id="angle_num" type="number" min="-3600" max="3600" value="330" step="1" style="width:100%" />
+      </div>
+
+      <div style="margin-top:12px;">
+        <div class="value">θ = <span id="deg">330</span>° &nbsp; = &nbsp; <span id="rad"> -0.524 </span> rad</div>
+        <div class="value">cosθ = <span id="cosv">0.866025</span></div>
+        <div class="value">sinθ = <span id="sinv">-0.5</span></div>
+        <div class="value">tanθ = <span id="tanv">-0.577350</span></div>
+        <div class="value">secθ = <span id="secv">1.154701</span></div>
+        <div class="value">cotθ = <span id="cotv">-1.732051</span></div>
+        <div class="value">cscθ = <span id="cscv">-2.000000</span></div>
+      </div>
+
+      <div class="legend" style="margin-top:10px;">
+        <div class="swatch"><span class="dot" style="background:#e53e3e"></span> cos (x)</div>
+        <div class="swatch"><span class="dot" style="background:#2f855a"></span> sin (y)</div>
+        <div class="swatch"><span class="dot" style="background:#8b5cf6"></span> tan / line</div>
+        <div class="swatch"><span class="dot" style="background:#ff9900"></span> sec (origin→(1,tan))</div>
+        <div class="swatch"><span class="dot" style="background:#0ea5a4"></span> cot / line</div>
+        <div class="swatch"><span class="dot" style="background:#d926a9"></span> csc (origin→(cot,1))</div>
+      </div>
+      <small>註：當 \( \cos\theta=0 \) 或 \( \sin\theta=0 \) 時，對應的函數（tan, sec 或 cot, csc）會發散，圖上會自動隱藏/顯示對應段以避免極大值。</small>
+    </div>
+  </div>
+
+<script>
+(function(){
+  // helper
+  const degToRad = d => d * Math.PI / 180;
+  const fmt = (x, n=6) => (Math.abs(x)===Infinity || isNaN(x)) ? (x>0? "∞" : (x<0? "-∞" : "NaN")) : (Math.abs(x) < 1e-10 ? "0.000000" : x.toFixed(n));
+
+  const angleRange = document.getElementById('angle');
+  const angleNum = document.getElementById('angle_num');
+  const degLabel = document.getElementById('deg');
+  const radLabel = document.getElementById('rad');
+
+  const cosv = document.getElementById('cosv');
+  const sinv = document.getElementById('sinv');
+  const tanv = document.getElementById('tanv');
+  const secv = document.getElementById('secv');
+  const cotv = document.getElementById('cotv');
+  const cscv = document.getElementById('cscv');
+
+  // SVG elements (in scaled coordinates: 1 unit = 1 in math, but transformed by scale(100))
+  const P = document.getElementById('P');
+  const P_label = document.getElementById('P_label');
+  const radius = document.getElementById('radius');
+  const proj_x = document.getElementById('proj_x');
+  const proj_y = document.getElementById('proj_y');
+  const cos_label = document.getElementById('cos_label');
+  const sin_label = document.getElementById('sin_label');
+
+  const angle_line = document.getElementById('angle_line');
+  const T = document.getElementById('T');
+  const t_segment = document.getElementById('t_segment');
+  const tan_label = document.getElementById('tan_label');
+  const sec_line = document.getElementById('sec_line');
+  const sec_label = document.getElementById('sec_label');
+
+  const C = document.getElementById('C');
+  const cot_segment = document.getElementById('cot_segment');
+  const cot_label = document.getElementById('cot_label');
+  const csc_line = document.getElementById('csc_line');
+  const csc_label = document.getElementById('csc_label');
+
+  function updateFrom(deg) {
+    // normalize deg to [-180,180) for nicer rad display
+    let dnorm = ((deg + 180) % 360) - 180;
+    const rad = degToRad(dnorm);
+    const cos = Math.cos(rad);
+    const sin = Math.sin(rad);
+
+    // tan, cot, sec, csc with sign handling
+    const tan = cos === 0 ? (sin > 0 ? Infinity : -Infinity) : sin / cos;
+    const cot = sin === 0 ? (cos > 0 ? Infinity : -Infinity) : cos / sin;
+    const sec = cos === 0 ? (cos>0? Infinity : (cos<0? -Infinity : Infinity)) : 1 / cos;
+    const csc = sin === 0 ? (sin>0? Infinity : (sin<0? -Infinity : Infinity)) : 1 / sin;
+
+    // set numeric displays
+    degLabel.textContent = deg;
+    radLabel.textContent = fmt(rad,6);
+    cosv.textContent = fmt(cos,6);
+    sinv.textContent = fmt(sin,6);
+    tanv.textContent = fmt(tan,6);
+    secv.textContent = fmt(sec,6);
+    cotv.textContent = fmt(cot,6);
+    cscv.textContent = fmt(csc,6);
+
+    // update point P and radius (SVG group scaled by 100)
+    P.setAttribute('cx', cos);
+    P.setAttribute('cy', -sin);
+    P_label.setAttribute('x', cos + 0.05);
+    P_label.setAttribute('y', -sin - 0.02);
+
+    radius.setAttribute('x2', cos);
+    radius.setAttribute('y2', -sin);
+
+    // projections
+    proj_x.setAttribute('x1', cos);
+    proj_x.setAttribute('y1', -sin);
+    proj_x.setAttribute('x2', cos);
+    proj_x.setAttribute('y2', 0);
+    cos_label.setAttribute('x', cos/2);
+    cos_label.setAttribute('y', 0.06);
+
+    proj_y.setAttribute('x1', 0);
+    proj_y.setAttribute('y1', 0);
+    proj_y.setAttribute('x2', 0);
+    proj_y.setAttribute('y2', -sin);
+    sin_label.setAttribute('x', -0.12);
+    sin_label.setAttribute('y', -sin/2);
+
+    // angle line (extend it sufficiently; line from origin with slope = tan)
+    const slope = (Math.abs(cos) < 1e-9) ? (sin > 0 ? 1e9 : -1e9) : (sin / cos);
+    // choose length 1.8 in positive x direction
+    const xfar = 1.8 * (cos >= 0 ? 1 : -1);
+    const yfar = -slope * xfar;
+    angle_line.setAttribute('x2', xfar);
+    angle_line.setAttribute('y2', yfar);
+
+    // intersection with vertical x = 1  -> (1, tan)
+    if (!isFinite(tan) || Math.abs(tan) > 1e6) {
+      // hide tangent/ sec visuals for extreme values
+      T.setAttribute('visibility','hidden');
+      t_segment.setAttribute('visibility','hidden');
+      tan_label.setAttribute('visibility','hidden');
+      sec_line.setAttribute('visibility','hidden');
+      sec_label.setAttribute('visibility','hidden');
+    } else {
+      T.setAttribute('visibility','visible');
+      t_segment.setAttribute('visibility','visible');
+      tan_label.setAttribute('visibility','visible');
+      sec_line.setAttribute('visibility','visible');
+      sec_label.setAttribute('visibility','visible');
+
+      T.setAttribute('cx', 1);
+      T.setAttribute('cy', -tan);
+      t_segment.setAttribute('x1', 1);
+      t_segment.setAttribute('y1', 0);
+      t_segment.setAttribute('x2', 1);
+      t_segment.setAttribute('y2', -tan);
+      tan_label.setAttribute('x', 1.02);
+      tan_label.setAttribute('y', -tan/2);
+
+      sec_line.setAttribute('x2', 1);
+      sec_line.setAttribute('y2', -tan);
+      sec_label.setAttribute('x', 0.45);
+      sec_label.setAttribute('y', -0.45 * Math.sign(sec || 1));
+    }
+
+    // intersection with horizontal y = -1 (remember we flip y sign in svg)
+    if (!isFinite(cot) || Math.abs(cot) > 1e6) {
+      C.setAttribute('visibility','hidden');
+      cot_segment.setAttribute('visibility','hidden');
+      cot_label.setAttribute('visibility','hidden');
+      csc_line.setAttribute('visibility','hidden');
+      csc_label.setAttribute('visibility','hidden');
+    } else {
+      // intersection is (cot, 1) in math coords, but svg y is -1
+      C.setAttribute('visibility','visible');
+      cot_segment.setAttribute('visibility','visible');
+      cot_label.setAttribute('visibility','visible');
+      csc_line.setAttribute('visibility','visible');
+      csc_label.setAttribute('visibility','visible');
+
+      C.setAttribute('cx', cot);
+      C.setAttribute('cy', -1);
+      cot_segment.setAttribute('x1', 0);
+      cot_segment.setAttribute('y1', -1);
+      cot_segment.setAttribute('x2', cot);
+      cot_segment.setAttribute('y2', -1);
+      cot_label.setAttribute('x', cot/2);
+      cot_label.setAttribute('y', -1.02);
+
+      csc_line.setAttribute('x2', cot);
+      csc_line.setAttribute('y2', -1);
+      csc_label.setAttribute('x', 0.9 * Math.sign(csc||1));
+      csc_label.setAttribute('y', -0.6);
+    }
+  }
+
+  // initial update
+  updateFrom(parseInt(angleRange.value,10));
+
+  // events
+  angleRange.addEventListener('input', e => {
+    const v = parseInt(e.target.value,10);
+    angleNum.value = v;
+    updateFrom(v);
+  });
+  angleNum.addEventListener('change', e => {
+    let v = Number(e.target.value);
+    if (isNaN(v)) v = 0;
+    v = ((v % 360) + 360) % 360;
+    angleNum.value = v;
+    angleRange.value = v;
+    updateFrom(v);
+  });
+
+})();
+</script>
+</body>
+</html>
+
+
+
+<!--
+自製提示框
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #customAlert {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      (top: 1%;) 
+      background: white;
+      border: 2px solid #333;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+    #customAlert button {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <button onclick="showCustomAlert()">顯示提示</button>
+
+  <div id="customAlert">
+    <p>666</p>
+    <button onclick="closeCustomAlert()">確定</button>
+  </div>
+
+  <script>
+    function showCustomAlert() {
+      document.getElementById('customAlert').style.display = 'block';
+    }
+    function closeCustomAlert() {
+      document.getElementById('customAlert').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
+
+#畫出6個三角函數
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>單位圓 — 六個三角函數示意圖</title>
+<style>
+  body { font-family: system-ui, "Noto Sans", Arial; margin:18px; background:#fbfbff; color:#0b1220; }
+  h1 { font-size:20px; margin-bottom:6px; }
+  .wrap { display:flex; gap:18px; flex-wrap:wrap; align-items:flex-start; }
+  .panel { background:#fff; border-radius:10px; padding:12px; box-shadow:0 6px 18px rgba(12,20,40,0.06); }
+  #svg-wrap { width:720px; max-width:100%; }
+  .controls { width:260px; }
+  .value { font-family: monospace; font-size:13px; }
+  label { font-size:13px; display:block; margin-bottom:6px; }
+  .muted { color:#546074; font-size:13px; }
+  .legend { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+  .swatch { display:inline-flex; align-items:center; gap:6px; padding:6px 8px; border-radius:6px; background:#f7f9fc; }
+  .dot { width:12px; height:12px; border-radius:6px; display:inline-block; }
+  small { color:#566; display:block; margin-top:6px; }
+</style>
+</head>
+<body>
+  <h1>單位圓 — 幾何看懂六個三角函數</h1>
+  <div class="wrap">
+    <div id="svg-wrap" class="panel">
+      <!- SVG（responsive） ->
+      <svg id="unit-svg" viewBox="-260 -260 520 520" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title">
+        <title id="title">單位圓與六個三角函數示意圖</title>
+
+        <!- 背景網格（輕） ->
+        <g stroke="#eef2f6" stroke-width="0.6">
+          <line x1="-250" y1="0" x2="250" y2="0" />
+          <line x1="0" y1="-250" x2="0" y2="250" />
+        </g>
+
+        <!- 單位圓（r=100） ->
+        <g transform="scale(100)">
+          <!- note: 繪圖單位＝1 -> SVG 100px ->
+          <circle cx="0" cy="0" r="1" fill="#ffffff" stroke="#2b6cb0" stroke-width="0.02"/>
+        </g>
+
+        <!-坐標軸（加粗） ->
+        <g stroke="#2d3748" stroke-width="2">
+          <line x1="-240" y1="0" x2="240" y2="0" />
+          <line x1="0" y1="-240" x2="0" y2="240" />
+        </g>
+
+        <!- 動態元素 group ->
+        <g id="dyn" transform="scale(100) translate(0,0)">
+          <!- 半徑（從原點到 P） ->
+          <line id="radius" x1="0" y1="0" x2="0.8660254" y2="-0.5" stroke="#111827" stroke-width="0.02" stroke-linecap="round"/>
+
+          <!- 點 P (cos, sin) ->
+          <circle id="P" cx="0.8660254" cy="-0.5" r="0.03" fill="#111827" stroke="#fff" stroke-width="0.006"/>
+          <text id="P_label" x="0.92" y="-0.52" font-size="0.06" fill="#111827">P(cos, sin)</text>
+
+          <!- 投影到 x 軸（cos） ->
+          <line id="proj_x" x1="0.8660254" y1="-0.5" x2="0.8660254" y2="0" stroke="#e53e3e" stroke-width="0.01" stroke-dasharray="0.02 0.02"/>
+          <line x1="0" y1="0" x2="0.8660254" y2="0" stroke="#e53e3e" stroke-width="0.01"/>
+          <text id="cos_label" x="0.43" y="0.04" font-size="0.06" fill="#e53e3e">cosθ</text>
+
+          <!- 投影到 y 軸（sin） ->
+          <line id="proj_y" x1="0" y1="0" x2="0" y2="-0.5" stroke="#2f855a" stroke-width="0.01" stroke-dasharray="0.02 0.02"/>
+          <line x1="0.8660254" y1="-0.5" x2="0" y2="-0.5" stroke="#2f855a" stroke-width="0.01"/>
+          <text id="sin_label" x="-0.12" y="-0.25" font-size="0.06" fill="#2f855a">sinθ</text>
+
+          <!- line from origin along angle extended to intersect x=1 (for tangent/sec) ->
+          <line id="angle_line" x1="0" y1="0" x2="1.5" y2="-0.8660254*1.732" stroke="#8b5cf6" stroke-width="0.004" stroke-linecap="round" opacity="0.9"/>
+
+          <!- intersection with vertical x=1 ->
+          <circle id="T" cx="1" cy="-0.5773503" r="0.03" fill="#8b5cf6" stroke="#fff" stroke-width="0.006" />
+          <line id="t_segment" x1="1" y1="0" x2="1" y2="-0.5773503" stroke="#8b5cf6" stroke-width="0.01"/>
+          <text id="tan_label" x="1.02" y="-0.3" font-size="0.06" fill="#8b5cf6">tanθ</text>
+
+          <!- secant (origin to (1,tan)) ->
+          <line id="sec_line" x1="0" y1="0" x2="1" y2="-0.5773503" stroke="#ff9900" stroke-width="0.008" stroke-linecap="round"/>
+          <text id="sec_label" x="0.45" y="-0.45" font-size="0.055" fill="#ff9900">|secθ|</text>
+
+          <!- intersection with horizontal y=1 (for cot/csc) ->
+          <circle id="C" cx="1.7320508" cy="-1" r="0.03" fill="#0ea5a4" stroke="#fff" stroke-width="0.006" />
+          <line id="cot_segment" x1="0" y1="-1" x2="1.7320508" y2="-1" stroke="#0ea5a4" stroke-width="0.01"/>
+          <text id="cot_label" x="0.8" y="-1.02" font-size="0.06" fill="#0ea5a4">cotθ</text>
+
+          <!- csc line (origin to (cot,1)) ->
+          <line id="csc_line" x1="0" y1="0" x2="1.7320508" y2="-1" stroke="#d926a9" stroke-width="0.008" stroke-linecap="round"/>
+          <text id="csc_label" x="0.9" y="-0.6" font-size="0.055" fill="#d926a9">|cscθ|</text>
+
+        </g>
+
+        <!- static labels for axes ->
+        <text x="240" y="-6" font-size="12" fill="#222" text-anchor="end">+x</text>
+        <text x="-6" y="-240" font-size="12" fill="#222" text-anchor="end">+y</text>
+
+      </svg>
+      <small class="muted">提示：拖動右側滑桿或輸入角度（度）來改變 θ。圖中 radius = 1（單位圓），所有幾何段長都依單位圓定義。</small>
+    </div>
+
+    <div class="controls panel">
+      <label>角度 θ（度）：
+        <input id="angle" type="range" min="0" max="360" value="330" step="1" style="width:100%"/>
+      </label>
+      <div style="margin-top:8px;">
+        <input id="angle_num" type="number" min="-3600" max="3600" value="330" step="1" style="width:100%" />
+      </div>
+
+      <div style="margin-top:12px;">
+        <div class="value">θ = <span id="deg">330</span>° &nbsp; = &nbsp; <span id="rad"> -0.524 </span> rad</div>
+        <div class="value">cosθ = <span id="cosv">0.866025</span></div>
+        <div class="value">sinθ = <span id="sinv">-0.5</span></div>
+        <div class="value">tanθ = <span id="tanv">-0.577350</span></div>
+        <div class="value">secθ = <span id="secv">1.154701</span></div>
+        <div class="value">cotθ = <span id="cotv">-1.732051</span></div>
+        <div class="value">cscθ = <span id="cscv">-2.000000</span></div>
+      </div>
+
+      <div class="legend" style="margin-top:10px;">
+        <div class="swatch"><span class="dot" style="background:#e53e3e"></span> cos (x)</div>
+        <div class="swatch"><span class="dot" style="background:#2f855a"></span> sin (y)</div>
+        <div class="swatch"><span class="dot" style="background:#8b5cf6"></span> tan / line</div>
+        <div class="swatch"><span class="dot" style="background:#ff9900"></span> sec (origin→(1,tan))</div>
+        <div class="swatch"><span class="dot" style="background:#0ea5a4"></span> cot / line</div>
+        <div class="swatch"><span class="dot" style="background:#d926a9"></span> csc (origin→(cot,1))</div>
+      </div>
+      <small>註：當 \( \cos\theta=0 \) 或 \( \sin\theta=0 \) 時，對應的函數（tan, sec 或 cot, csc）會發散，圖上會自動隱藏/顯示對應段以避免極大值。</small>
+    </div>
+  </div>
+
+<script>
+(function(){
+  // helper
+  const degToRad = d => d * Math.PI / 180;
+  const fmt = (x, n=6) => (Math.abs(x)===Infinity || isNaN(x)) ? (x>0? "∞" : (x<0? "-∞" : "NaN")) : (Math.abs(x) < 1e-10 ? "0.000000" : x.toFixed(n));
+
+  const angleRange = document.getElementById('angle');
+  const angleNum = document.getElementById('angle_num');
+  const degLabel = document.getElementById('deg');
+  const radLabel = document.getElementById('rad');
+
+  const cosv = document.getElementById('cosv');
+  const sinv = document.getElementById('sinv');
+  const tanv = document.getElementById('tanv');
+  const secv = document.getElementById('secv');
+  const cotv = document.getElementById('cotv');
+  const cscv = document.getElementById('cscv');
+
+  // SVG elements (in scaled coordinates: 1 unit = 1 in math, but transformed by scale(100))
+  const P = document.getElementById('P');
+  const P_label = document.getElementById('P_label');
+  const radius = document.getElementById('radius');
+  const proj_x = document.getElementById('proj_x');
+  const proj_y = document.getElementById('proj_y');
+  const cos_label = document.getElementById('cos_label');
+  const sin_label = document.getElementById('sin_label');
+
+  const angle_line = document.getElementById('angle_line');
+  const T = document.getElementById('T');
+  const t_segment = document.getElementById('t_segment');
+  const tan_label = document.getElementById('tan_label');
+  const sec_line = document.getElementById('sec_line');
+  const sec_label = document.getElementById('sec_label');
+
+  const C = document.getElementById('C');
+  const cot_segment = document.getElementById('cot_segment');
+  const cot_label = document.getElementById('cot_label');
+  const csc_line = document.getElementById('csc_line');
+  const csc_label = document.getElementById('csc_label');
+
+  function updateFrom(deg) {
+    // normalize deg to [-180,180) for nicer rad display
+    let dnorm = ((deg + 180) % 360) - 180;
+    const rad = degToRad(dnorm);
+    const cos = Math.cos(rad);
+    const sin = Math.sin(rad);
+
+    // tan, cot, sec, csc with sign handling
+    const tan = cos === 0 ? (sin > 0 ? Infinity : -Infinity) : sin / cos;
+    const cot = sin === 0 ? (cos > 0 ? Infinity : -Infinity) : cos / sin;
+    const sec = cos === 0 ? (cos>0? Infinity : (cos<0? -Infinity : Infinity)) : 1 / cos;
+    const csc = sin === 0 ? (sin>0? Infinity : (sin<0? -Infinity : Infinity)) : 1 / sin;
+
+    // set numeric displays
+    degLabel.textContent = deg;
+    radLabel.textContent = fmt(rad,6);
+    cosv.textContent = fmt(cos,6);
+    sinv.textContent = fmt(sin,6);
+    tanv.textContent = fmt(tan,6);
+    secv.textContent = fmt(sec,6);
+    cotv.textContent = fmt(cot,6);
+    cscv.textContent = fmt(csc,6);
+
+    // update point P and radius (SVG group scaled by 100)
+    P.setAttribute('cx', cos);
+    P.setAttribute('cy', -sin);
+    P_label.setAttribute('x', cos + 0.05);
+    P_label.setAttribute('y', -sin - 0.02);
+
+    radius.setAttribute('x2', cos);
+    radius.setAttribute('y2', -sin);
+
+    // projections
+    proj_x.setAttribute('x1', cos);
+    proj_x.setAttribute('y1', -sin);
+    proj_x.setAttribute('x2', cos);
+    proj_x.setAttribute('y2', 0);
+    cos_label.setAttribute('x', cos/2);
+    cos_label.setAttribute('y', 0.06);
+
+    proj_y.setAttribute('x1', 0);
+    proj_y.setAttribute('y1', 0);
+    proj_y.setAttribute('x2', 0);
+    proj_y.setAttribute('y2', -sin);
+    sin_label.setAttribute('x', -0.12);
+    sin_label.setAttribute('y', -sin/2);
+
+    // angle line (extend it sufficiently; line from origin with slope = tan)
+    const slope = (Math.abs(cos) < 1e-9) ? (sin > 0 ? 1e9 : -1e9) : (sin / cos);
+    // choose length 1.8 in positive x direction
+    const xfar = 1.8 * (cos >= 0 ? 1 : -1);
+    const yfar = -slope * xfar;
+    angle_line.setAttribute('x2', xfar);
+    angle_line.setAttribute('y2', yfar);
+
+    // intersection with vertical x = 1  -> (1, tan)
+    if (!isFinite(tan) || Math.abs(tan) > 1e6) {
+      // hide tangent/ sec visuals for extreme values
+      T.setAttribute('visibility','hidden');
+      t_segment.setAttribute('visibility','hidden');
+      tan_label.setAttribute('visibility','hidden');
+      sec_line.setAttribute('visibility','hidden');
+      sec_label.setAttribute('visibility','hidden');
+    } else {
+      T.setAttribute('visibility','visible');
+      t_segment.setAttribute('visibility','visible');
+      tan_label.setAttribute('visibility','visible');
+      sec_line.setAttribute('visibility','visible');
+      sec_label.setAttribute('visibility','visible');
+
+      T.setAttribute('cx', 1);
+      T.setAttribute('cy', -tan);
+      t_segment.setAttribute('x1', 1);
+      t_segment.setAttribute('y1', 0);
+      t_segment.setAttribute('x2', 1);
+      t_segment.setAttribute('y2', -tan);
+      tan_label.setAttribute('x', 1.02);
+      tan_label.setAttribute('y', -tan/2);
+
+      sec_line.setAttribute('x2', 1);
+      sec_line.setAttribute('y2', -tan);
+      sec_label.setAttribute('x', 0.45);
+      sec_label.setAttribute('y', -0.45 * Math.sign(sec || 1));
+    }
+
+    // intersection with horizontal y = -1 (remember we flip y sign in svg)
+    if (!isFinite(cot) || Math.abs(cot) > 1e6) {
+      C.setAttribute('visibility','hidden');
+      cot_segment.setAttribute('visibility','hidden');
+      cot_label.setAttribute('visibility','hidden');
+      csc_line.setAttribute('visibility','hidden');
+      csc_label.setAttribute('visibility','hidden');
+    } else {
+      // intersection is (cot, 1) in math coords, but svg y is -1
+      C.setAttribute('visibility','visible');
+      cot_segment.setAttribute('visibility','visible');
+      cot_label.setAttribute('visibility','visible');
+      csc_line.setAttribute('visibility','visible');
+      csc_label.setAttribute('visibility','visible');
+
+      C.setAttribute('cx', cot);
+      C.setAttribute('cy', -1);
+      cot_segment.setAttribute('x1', 0);
+      cot_segment.setAttribute('y1', -1);
+      cot_segment.setAttribute('x2', cot);
+      cot_segment.setAttribute('y2', -1);
+      cot_label.setAttribute('x', cot/2);
+      cot_label.setAttribute('y', -1.02);
+
+      csc_line.setAttribute('x2', cot);
+      csc_line.setAttribute('y2', -1);
+      csc_label.setAttribute('x', 0.9 * Math.sign(csc||1));
+      csc_label.setAttribute('y', -0.6);
+    }
+  }
+
+  // initial update
+  updateFrom(parseInt(angleRange.value,10));
+
+  // events
+  angleRange.addEventListener('input', e => {
+    const v = parseInt(e.target.value,10);
+    angleNum.value = v;
+    updateFrom(v);
+  });
+  angleNum.addEventListener('change', e => {
+    let v = Number(e.target.value);
+    if (isNaN(v)) v = 0;
+    v = ((v % 360) + 360) % 360;
+    angleNum.value = v;
+    angleRange.value = v;
+    updateFrom(v);
+  });
+
+})();
+</script>
+</body>
+</html>
+
+
+
+-->
